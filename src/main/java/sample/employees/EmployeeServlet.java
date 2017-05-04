@@ -55,7 +55,7 @@ public class EmployeeServlet extends HttpServlet {
 
     private void searchEmployeeByName(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        String employeeName = req.getParameter("employeeName");
+        String employeeName = new String(req.getParameter("employeeName").getBytes("ISO-8859-1"),"UTF-8");
         List<Employee> result = employeeService.searchEmployeesByName(employeeName);
         forwardListEmployees(req, resp, result);
     }
