@@ -39,7 +39,7 @@ public class EmployeeServlet extends HttpServlet {
 
     private void searchEmployeeById(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        long idEmployee = Integer.valueOf(req.getParameter("idEmployee"));
+        int idEmployee = Integer.valueOf(req.getParameter("idEmployee"));
         Employee employee = null;
         try {
             employee = employeeService.getEmployee(idEmployee);

@@ -1,11 +1,14 @@
 package sample.employees;
 
+import java.io.Serializable;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Created by yutaroueno on 2017/04/29.
  */
-public class Employee {
+public class Employee extends EmployeeCommonBean implements Serializable {
+
+    private static final long serialVersionUID = 4348550185767034479L;
     private long id;
     private String name;
     private String lastName;

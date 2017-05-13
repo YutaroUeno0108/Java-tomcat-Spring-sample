@@ -15,8 +15,6 @@ import java.util.Map;
  * Created by yutaroueno on 2017/05/04.
  */
 public class EmployeeListResultSetExtractor implements ResultSetExtractor<List<Employee>> {
-    /** date format**/
-    static public final String DATE_PATTERN ="dd-MM-YYYY";
     @Override
     public List<Employee> extractData(ResultSet rs) throws SQLException, DataAccessException {
         Map<String,Employee> map = new LinkedHashMap<String,Employee>();

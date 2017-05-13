@@ -25,9 +25,9 @@ public class EmployeeDaoImpl extends NamedParameterJdbcDaoSupport implements Emp
     /** controll transaction**/
     private PlatformTransactionManager transactionManager;
     /** date formatting**/
-    SimpleDateFormat inputformat = new SimpleDateFormat("dd-MM-YYYY");
+    SimpleDateFormat inputformat = new SimpleDateFormat("yyyyMMdd");
     SimpleDateFormat outputformat = new SimpleDateFormat("yyyyMMdd");
-    static public final String DATE_PATTERN ="dd-MM-YYYY";
+    static public final String DATE_PATTERN ="yyyyMMdd";
 
     @Override
     /** create new employee**/

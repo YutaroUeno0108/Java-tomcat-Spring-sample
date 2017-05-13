@@ -9,6 +9,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import sample.common.DataSourceConfiguration;
 
 import javax.sql.DataSource;
@@ -23,6 +24,7 @@ import java.util.stream.Collectors;
 /**
  * Created by yutaroueno on 2017/04/29.
  */
+@Service
 public class EmployeeService {
 
     private static ApplicationContext context=new ClassPathXmlApplicationContext("spring.xml");
@@ -40,9 +42,9 @@ public class EmployeeService {
         return empDao.getEmployeeByName(name);
     }
 
-    public Employee getEmployee(long id) throws Exception {
+    public Employee getEmployee(int id) throws Exception {
         EmployeeDao empDao = (EmployeeDao) context.getBean("employeeDaoImpl");
-        Employee result = empDao.getEmployeeById((int)id);
+        Employee result = empDao.getEmployeeById(id);
         if (result != null) return result;
         throw new Exception("The Employee id " + id + " not found");
 
