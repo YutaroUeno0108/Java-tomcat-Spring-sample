@@ -18,7 +18,7 @@ public class EmployeeRestController {
     @Autowired
     EmployeeService employeeService;
 
-    @RequestMapping(value = "", method = GET)
+    @RequestMapping(path = "", method = GET)
     public List<Employee> getAllEmployees(Model model){
         return employeeService.getAllEmployees();
     }
