@@ -13,12 +13,11 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  * Created by yutaroueno on 2017/05/14.
  */
 @RestController
-@RequestMapping("employee-rest")
 public class EmployeeRestController {
     @Autowired
     EmployeeService employeeService;
 
-    @RequestMapping(path = "", method = GET)
+    @RequestMapping(path = "employee-rest", method = GET)
     public List<Employee> getAllEmployees(Model model){
         return employeeService.getAllEmployees();
     }
