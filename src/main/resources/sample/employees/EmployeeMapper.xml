@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD  Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sample.employees.EmployeeMapper">
+    <select id="getEmployeeById" parameterType="int" resultType="Employee">
+        select
+            id
+            ,name
+            ,lastName
+            ,birthDate
+            ,role
+            ,department
+            ,email
+        from
+            employees
+        where
+            id = #{id}
+    </select>
+    <select id="getEmployeeByName" parameterType="String" resultType="map">
+        select
+        id
+        ,name
+        ,lastName
+        ,birthDate
+        ,role
+        ,department
+        ,email
+        from
+        employees
+        where
+        name = #{employeeName}
+    </select>
+    <select id="getEmployees" resultType="map">
+        select
+        id
+        ,name
+        ,lastName
+        ,birthDate
+        ,role
+        ,department
+        ,email
+        from
+        employees
+    </select>
+    <insert id="createEmployee" parameterType="Employee">
+        insert into employees
+        (
+            id
+            ,name
+            ,lastname
+            ,birthdate
+            ,role
+            ,department
+            ,email
+        )
+        values
+        (
+            null
+            ,#{name}
+            ,#{lastName}
+            ,#{birthDate}
+            ,#{role}
+            ,#{department}
+            ,#{email}
+        )
+    </insert>
+    <update id="updateEmployee" parameterType="Employee">
+        update employees
+        set
+            name = #{name}
+            ,lastname = #{lastName}
+            ,birthdate = #{birthDate}
+            ,role = #{role}
+            ,department = #{department}
+            ,email = #{email}
+        where
+            id = #{id}
+    </update>
+    <delete id="deleteEmployee" parameterType="int">
+        delete from employees
+        where
+        id = #{id}
+    </delete>
+</mapper>

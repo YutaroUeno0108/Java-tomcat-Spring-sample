@@ -1,10 +1,7 @@
 package sample.employees;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,21 +18,33 @@ public class EmployeeRestController {
     EmployeeService employeeService;
 
     @RequestMapping(path = "employee-rest", method = GET)
-    public List<Employee> getAllEmployees(){
-        return employeeService.getAllEmployees();
+    public Employee getEmployeeById(@RequestParam String employeeId){
+        return employeeService.getEmployeeById(Integer.valueOf(employeeId));
+    }
+
+    @RequestMapping(path = "employee-rest-name", method = GET)
+    public List<Employee> getEmployeeByName(@RequestParam String employeeName){
+        return employeeService.getEmployeeByName(employeeName);
     }
 
     @RequestMapping(path = "employee-rest", method = POST)
-    public List<Employee> addEmployee(@RequestBody Employee employee) {
-        employeeService.addEmployee(employee);
-        return employeeService.getAllEmployees();
+    public void createEmployee(@RequestBody Employee employee){
+        employeeService.createEmployee(employee);
     }
 
     @RequestMapping(path = "employee-rest", method = PUT)
-    public List<Employee> editEmployee(@RequestBody Employee employee) {
-        employee.setId(Integer.valueOf(employee.getIdEmployee()));
+    public void updateEmployee(@RequestBody Employee employee){
         employeeService.updateEmployee(employee);
-        return employeeService.getAllEmployees();
+    }
+
+    @RequestMapping(path = "employee-rest-del", method = PUT)
+    public void deleteEmployee(@RequestBody String employeeId){
+        employeeService.deleteEmployee(Integer.valueOf(employeeId));
+    }
+
+    @RequestMapping(path = "employee-rest-all", method = GET)
+    public List<Employee> getEmployees(){
+        return employeeService.getEmployees();
     }
 
 }

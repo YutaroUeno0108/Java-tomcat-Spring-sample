@@ -22,13 +22,13 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class EmployeeController {
 
     @Autowired
-        EmployeeService employeeService;
+    EmployeeService employeeService;
 
     @RequestMapping(value = "/employee-spring", method = GET)
     public String getAllEmployees(Model model){
         EmployeeForm employeeForm = new EmployeeForm();
         model.addAttribute("employeeForm",employeeForm);
-        model.addAttribute("employeeList",employeeService.getAllEmployees());
+        model.addAttribute("employeeList",employeeService.getEmployees());
         return "list-employees-spring";
     }
 
@@ -36,14 +36,14 @@ public class EmployeeController {
     public String searchEmployeesByName(Model model, @RequestParam String searchAction, @RequestParam String employeeName) {
         EmployeeForm employeeForm = new EmployeeForm();
         model.addAttribute("employeeForm", employeeForm);
-        model.addAttribute("employeeList",employeeService.searchEmployeesByName(employeeName));
+        model.addAttribute("employeeList",employeeService.getEmployeeByName(employeeName));
         return "list-employees-spring";
     }
 
     @RequestMapping(value = "/employee-spring", method = GET,  params = {"idEmployee","searchAction"})
     public String searchEmployeesById(Model model, @RequestParam String idEmployee, @RequestParam String searchAction) {
         try {
-            Employee employee = employeeService.getEmployee(Integer.valueOf(idEmployee));
+            Employee employee = employeeService.getEmployeeById(Integer.valueOf(idEmployee));
             employee.setAction("edit");
             employee.setIdEmployee(idEmployee);
             model.addAttribute("employee",employee);
@@ -77,7 +77,7 @@ public class EmployeeController {
         String action = employee.getAction();
         switch (action) {
             case "add":
-                employeeService.addEmployee(employee);
+                employeeService.createEmployee(employee);
                 break;
             case "edit":
                 employee.setId(Integer.valueOf(employee.getIdEmployee()));
